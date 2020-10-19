@@ -72,7 +72,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: clean feeds
-      run: 
+      run: ./scripts/feeds clean
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
