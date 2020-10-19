@@ -71,11 +71,17 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
+    - name: clean feeds
+      run: 
+
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
+
+    - name: rm
+      run: rm -rf ./tmp && rm -rf .config 
 
     - name: Load custom configuration
       run: |
