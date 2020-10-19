@@ -24,7 +24,7 @@ on:
     types: started
 env:
   REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: 19.07
+  REPO_BRANCH: dev
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -64,9 +64,8 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
    
-    - name: clean feeds
-      run: ./scripts/feeds clean
-
+    
+      
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
@@ -82,8 +81,7 @@ jobs:
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
 
-    - name: rm
-      run: rm -rf ./tmp && rm -rf .config 
+    
 
     - name: Load custom configuration
       run: |
